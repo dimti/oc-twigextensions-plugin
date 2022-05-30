@@ -206,7 +206,10 @@ class Plugin extends PluginBase
             'shuffle' => function ($array) use ($arrayFilters) {
                 $callable = $arrayFilters[0]->getCallable();
                 return $callable($array);
-            }
+            },
+            'sum' => function ($array, $key) {
+                return array_reduce($array, fn ($result, $item) => $result + $item[$key], 0);
+            },
         ];
     }
 
